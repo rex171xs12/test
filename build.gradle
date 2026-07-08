@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.android.system.qspaas'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.android.system.qspaas'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+        resConfigs "pt-rBR"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    aaptOptions {
+        noCompress 'resources.arsc', 'png', 'dat'
+        additionalParameters "--no-version-vectors"
+    }
+
+    androidResources {
+        noCompress 'png'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'androidx.annotation:annotation:1.7.0'
+}
